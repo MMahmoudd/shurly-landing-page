@@ -6,19 +6,19 @@
                     <img class="ma-auto" src="../../assets/images/fullMobile.svg" alt="fullMobile">
                 </v-col>
                 <v-col md="6" cols="12">
-                    <h2>Kickstart your journey to better credit!</h2>
+                    <h2>{{ $t('landing.journey.title') }}</h2>
                     <ul>
                         <li>
                             <img src="../../assets/images/tick.svg" alt="tick">
-                            Get a bonus of $250 right now!
+                            {{ $t('landing.journey.points[0]') }}
                         </li>
                         <li>
                             <img src="../../assets/images/tick.svg" alt="tick">
-                            Enjoy zero interest, no late fees, and no credit checks!
+                            {{ $t('landing.journey.points[1]') }}
                         </li>
                         <li>
                             <img src="../../assets/images/tick.svg" alt="tick">
-                            Quick and easy delivery at your fingertips!
+                            {{ $t('landing.journey.points[2]') }}
                         </li>
                     </ul>
                 </v-col>
@@ -28,7 +28,7 @@
 </template>
 <style lang="scss">
     .jurney-component{
-        height: 100vh;
+        min-height: 100vh;
         margin: 50px 0;
         h2{
             color: #fff;
@@ -46,6 +46,33 @@
                 margin-bottom: 15px;
                 img{
                     margin: 0 15px 0 0;
+                }
+            }
+        }
+        @media (max-width: 1263px) {
+            min-height: auto;
+            margin: 90px 0 40px;
+            h2{
+                font-size: 40px;
+            }
+            ul li{
+                font-size: 18px;
+            }
+            img{
+                max-width: 100%;
+            }
+        }
+        @media (max-width: 959px) {
+            margin: 40px 0;
+            h2{
+                font-size: 30px;
+            }
+            ul li{
+                font-size: 15px;
+                align-items: flex-start;
+                img{
+                    width: 18px;
+                    margin-top: 3px;
                 }
             }
         }

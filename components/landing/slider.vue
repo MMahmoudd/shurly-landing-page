@@ -3,9 +3,9 @@
     <v-container fluid>
         <!-- <v-row> -->
                 <div class="carousel-wrapper">
-                <VueSlickCarousel v-bind="settingsCatogries">
+                <VueSlickCarousel v-bind="carouselSettings">
                     <div class="swiper-slide">  
-                        <h1>Trusted by millions of customers.</h1>
+                        <h1>{{ $t('landing.slider.title') }}</h1>
                     </div>
                 <div v-for="(slide, index) in boxes" :key="index" class="swiper-slide">
                     <div class="box">
@@ -52,50 +52,8 @@
         },
         data() {
             return {
-                boxes: [
-                    {
-                        name: "Vineet",
-                        position: "Web Designer",
-                        comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent elementum facilisis leo, vel",
-                        image: image1
-                    },
-                    {
-                        name: "Ranveer",
-                        position: "Webflow Developer",
-                        comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent elementum facilisis leo, vel",
-                        image: image2
-                    },
-                    {
-                        name: "Tony Start",
-                        position: "CEO",
-                        comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent elementum facilisis leo, vel",
-                        image: image3
-                    },
-                    {
-                        name: "Mahmoud",
-                        position: "Front End",
-                        comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent elementum facilisis leo, vel",
-                        image: image1
-                    },
-                    {
-                        name: "Shrief",
-                        position: "CTO",
-                        comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent elementum facilisis leo, vel",
-                        image: image2
-                    },
-                    {
-                        name: "Yousef",
-                        position: "Back end",
-                        comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent elementum facilisis leo, vel",
-                        image: image3
-                    },
-                    {
-                        name: "Yahia",
-                        position: "Mobile Developer",
-                        comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent elementum facilisis leo, vel",
-                        image: image1
-                    },
-                ],
+                isActive: false,
+                profileImages: [image1, image2, image3, image1, image2, image3, image1],
         settingsCatogries: {
             ltr: true,
             focusOnSelect: true,
@@ -129,9 +87,9 @@
             {
                 breakpoint: 1100,
                 settings: {
-                slidesToShow: 3,
-                slidesToScroll: 3,
-                infinite: false,
+                slidesToShow: 2,
+                slidesToScroll: 2,
+                infinite: true,
                 dots: false,
                 centerMode: false,
                 centerPadding: "9px",
@@ -140,9 +98,9 @@
             {
                 breakpoint: 790,
                 settings: {
-                slidesToShow: 3,
-                slidesToScroll: 3,
-                infinite: false,
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                infinite: true,
                 dots: false,
                 centerMode: false,
                 centerPadding: "9px",
@@ -151,9 +109,9 @@
             {
                 breakpoint: 700,
                 settings: {
-                slidesToShow: 3,
-                slidesToScroll: 3,
-                infinite: false,
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                infinite: true,
                 dots: false,
                 centerMode: false,
                 centerPadding: "9px",
@@ -162,9 +120,9 @@
             {
                 breakpoint: 200,
                 settings: {
-                slidesToShow: 3,
-                slidesToScroll: 3,
-                infinite: false,
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                infinite: true,
                 dots: false,
                 centerMode: false,
                 centerPadding: "9px",
@@ -174,12 +132,31 @@
         },
             }
         },
+        computed: {
+            carouselSettings() {
+                return {
+                    ...this.settingsCatogries,
+                    ltr: this.$i18n.locale !== 'ar'
+                }
+            },
+            boxes() {
+                const localizedBoxes = this.$t('landing.slider.boxes')
+                if (!Array.isArray(localizedBoxes)) {
+                    return []
+                }
+
+                return localizedBoxes.map((box, index) => ({
+                    ...box,
+                    image: this.profileImages[index] || image1
+                }))
+            },
+        },
     }
 </script>
 <style lang="scss">
       .slider-list-component{
         height: 400px;
-      width: 100vw !important;
+      width: 100% !important;
       background: transparent !important;
     .slick-track{
       display: flex;
@@ -238,6 +215,30 @@
       li button:before{
         color: $second-color;
         font-size: 10px;
+      }
+    }
+  }
+  @media (max-width: 1263px) {
+    .slider-list-component{
+      height: auto;
+      padding: 24px 0;
+      .slick-track .slick-slide .box{
+        padding: 28px 24px;
+      }
+    }
+  }
+  @media (max-width: 959px) {
+    .slider-list-component{
+      .slick-track .slick-slide{
+        h1{
+          font-size: 30px !important;
+        }
+        .box{
+          padding: 20px 16px;
+          .comment{
+            margin-bottom: 28px !important;
+          }
+        }
       }
     }
   }

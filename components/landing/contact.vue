@@ -2,17 +2,17 @@
     <div class="contact-component">
         <v-container>
             <v-row>
-                <v-col md="6">
-                    <h2>Contact Us</h2>
-                    <p>We'd love to hear from you! Please fill out the form below and our team will get back to you as soon as possible.</p>
+                <v-col cols="12" md="6">
+                    <h2>{{ $t('landing.contact.title') }}</h2>
+                    <p>{{ $t('landing.contact.description') }}</p>
                 </v-col>
-                <v-col md="6">
+                <v-col cols="12" md="6">
                     <div class="form">
                                             <v-row>
                         <v-col md="6" cols="12">
                             <v-text-field
-                                label="First name"
-                                placeholder="First name"
+                                :label="$t('landing.contact.fields.firstName')"
+                                :placeholder="$t('landing.contact.fields.firstName')"
                                 outlined
                                 dense
                                 hide-details
@@ -20,8 +20,8 @@
                         </v-col>
                         <v-col md="6" cols="12">
                             <v-text-field
-                                label="Last name"
-                                placeholder="Last name"
+                                :label="$t('landing.contact.fields.lastName')"
+                                :placeholder="$t('landing.contact.fields.lastName')"
                                 outlined
                                 dense
                                 hide-details
@@ -29,8 +29,8 @@
                         </v-col>
                         <v-col cols="12">
                             <v-text-field
-                                label="Email"
-                                placeholder="Email"
+                                :label="$t('landing.contact.fields.email')"
+                                :placeholder="$t('landing.contact.fields.email')"
                                 outlined
                                 dense
                                 hide-details
@@ -38,8 +38,8 @@
                         </v-col>
                         <v-col cols="12">
                             <v-textarea
-                                label="Message"
-                                placeholder="Message"
+                                :label="$t('landing.contact.fields.message')"
+                                :placeholder="$t('landing.contact.fields.message')"
                                 outlined
                                 dense
                                 hide-details
@@ -47,7 +47,7 @@
                         </v-col>
                         <v-col md="6" cols="12">
                             <v-btn>
-                                Submit
+                                {{ $t('landing.contact.submit') }}
                             </v-btn>
                         </v-col>
                     </v-row>
@@ -104,6 +104,35 @@
                     text-transform: capitalize;
                     letter-spacing: 0px;
                 }
+            }
+        }
+        @media (max-width: 959px) {
+            padding: 30px 0;
+            h2{
+                font-size: 28px;
+                margin-bottom: 8px;
+            }
+            p{
+                font-size: 16px;
+                line-height: 1.6;
+                margin-bottom: 0;
+            }
+            .form{
+                margin-top: 20px;
+                .v-input{
+                    margin-bottom: 8px;
+                }
+                .v-btn{
+                    height: 42px !important;
+                }
+            }
+        }
+        @media (max-width: 600px) {
+            h2{
+                font-size: 30px;
+            }
+            p{
+                font-size: 15px;
             }
         }
     }

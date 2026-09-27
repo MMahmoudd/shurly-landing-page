@@ -3,8 +3,8 @@ import colors from 'vuetify/es5/util/colors'
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: '%s - shurrly',
-    title: 'shurrly',
+    titleTemplate: '%s - Surely',
+    title: 'Surely',
     htmlAttrs: {
       lang: 'en'
     },
@@ -15,7 +15,7 @@ export default {
       { name: 'format-detection', content: 'telephone=no' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/logo.png' },
+      { rel: 'icon', type: 'image/png', href: '/logo.png' },
       {
         rel: 'preconnect',
         href: 'https://fonts.googleapis.com'
@@ -27,18 +27,20 @@ export default {
       },
       {
         rel: 'stylesheet',
-        href: 'https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap'
+        href: 'https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap'
       },
     ]
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
+    '@mdi/font/css/materialdesignicons.min.css',
     '~/assets/style/main.scss'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    { src: '~/plugins/i18n-direction' },
     { src: '~/plugins/slick' },
   ],
 
@@ -53,11 +55,30 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    '@nuxtjs/i18n'
   ],
+
+  i18n: {
+    strategy: 'prefix',
+    defaultLocale: 'en',
+    lazy: true,
+    langDir: 'locals/',
+    locales: [
+      { code: 'en', iso: 'en-US', file: 'en.js', name: 'English', dir: 'ltr' },
+      { code: 'ar', iso: 'ar-SA', file: 'ar.js', name: 'العربية', dir: 'rtl' }
+    ],
+    detectBrowserLanguage: false,
+    vueI18n: {
+      fallbackLocale: 'en'
+    }
+  },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
+    icons: {
+      iconfont: 'mdi'
+    },
     theme: {
       dark: false,
       themes: {
@@ -77,5 +98,10 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    splitChunks: {
+      layouts: true,
+      pages: true,
+      commons: true
+    }
   }
 }

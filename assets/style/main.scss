@@ -5,14 +5,11 @@ html {
     width: 100%;
     overflow-x: hidden;
     scroll-behavior: smooth;
-    background-color: #0C132F !important;
+    // background-color: #0C132F !important;
     font-family: "Poppins", serif !important;
     font-optical-sizing: auto !important;
     font-style: normal !important;
     .v-application{
-        background-color: #0C132F !important;
-        background: #0C132F !important;
-        color: #fff;
         font-family: "Poppins", serif !important;
         font-optical-sizing: auto !important;
         font-style: normal !important;
@@ -40,4 +37,45 @@ html {
 }
 .w-100 {
   width: 100% !important;
+}
+
+[dir="rtl"] {
+  .navbar-component .contOfNav {
+    margin: 0 50px 0 10px;
+  }
+
+  .jurney-component ul li img {
+    margin: 0 0 0 15px !important;
+  }
+
+  .slider-list-component {
+    .name,
+    .position {
+      margin-left: 0 !important;
+      margin-right: 10px;
+    }
+  }
+}
+
+@media (max-width: 1263px) {
+  .v-application .container {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+@media (max-width: 959px) {
+  .v-application .container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .w-25,
+  .w-40,
+  .w-50,
+  .w-75,
+  .w-80,
+  .w-90 {
+    width: 100% !important;
+  }
 }

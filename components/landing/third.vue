@@ -3,9 +3,9 @@
         <v-container>
             <v-row class="d-flex align-center">
                 <v-col md="6" cols="12">
-                    <h2>Kickstart your journey to better credit!</h2>
+                    <h2>{{ $t('landing.third.title') }}</h2>
                     <p>
-                        Continue using your existing bank and ensure that your Empower Cash Advance or Empower Thrive funds are transferred directly to your main bank account.
+                        {{ $t('landing.third.description') }}
                     </p>
                 </v-col>
                 <v-col md="6" cols="12" class="d-flex justify-center">
@@ -17,7 +17,7 @@
 </template>
 <style lang="scss">
     .jurney-component{
-        height: 100vh;
+        min-height: 100vh;
         margin: 50px 0;
         h2{
             color: #fff;
@@ -32,5 +32,27 @@
                 align-items: center;
                 margin-bottom: 15px;
             }
+        @media (max-width: 1263px) {
+            min-height: auto;
+            margin: 60px 0 40px;
+            h2{
+                font-size: 40px;
+            }
+            p{
+                font-size: 18px;
+            }
+            img{
+                max-width: 100%;
+            }
+        }
+        @media (max-width: 959px) {
+            margin: 40px 0;
+            h2{
+                font-size: 30px;
+            }
+            p{
+                font-size: 16px;
+            }
+        }
     }
 </style>

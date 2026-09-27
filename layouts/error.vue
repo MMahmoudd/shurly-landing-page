@@ -6,8 +6,8 @@
     <h1 v-else>
       {{ otherError }}
     </h1>
-    <NuxtLink to="/">
-      Home page
+    <NuxtLink :to="localePath('/')">
+      {{ $t('error.home') }}
     </NuxtLink>
   </v-app>
 </template>
@@ -22,17 +22,23 @@ export default {
       default: null
     }
   },
-  data () {
-    return {
-      pageNotFound: '404 Not Found',
-      otherError: 'An error occurred'
+  computed: {
+    pageNotFound () {
+      return this.$t('error.notFound')
+    },
+    otherError () {
+      return this.$t('error.generic')
     }
   },
   head () {
     const title =
       this.error.statusCode === 404 ? this.pageNotFound : this.otherError
     return {
-      title
+      title,
+      htmlAttrs: {
+        lang: this.$i18n?.locale || 'en',
+        dir: this.$i18n?.localeProperties?.dir || 'ltr'
+      }
     }
   }
 }

@@ -17,6 +17,17 @@ export default {
     navbarComponent,
     footerComponent
   },
+  head () {
+    const localeCode = this.$i18n?.locale || 'en'
+    const localeDir = this.$i18n?.localeProperties?.dir || 'ltr'
+
+    return {
+      htmlAttrs: {
+        lang: localeCode,
+        dir: localeDir
+      }
+    }
+  },
   data () {
     return {
       title: 'Vuetify.js'
